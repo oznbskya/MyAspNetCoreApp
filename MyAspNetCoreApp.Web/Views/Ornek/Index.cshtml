@@ -1,0 +1,39 @@
+﻿@using MyAspNetCoreApp.Web.Controllers
+@model List<Product2>;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Örnek Controller Index Sayfası</h1>
+
+@foreach (var item in Model)
+{
+    <p>@item.Id - @item.Name</p>
+}
+
+<hr />
+
+@{
+    var datetime = DateTime.Now.ToShortDateString();
+
+    <p>Bugünün Tarihi: @datetime</p>
+}
+
+@if (1 == 2)
+{
+    <p>True</p>
+}
+else if (DateTime.IsLeapYear(DateTime.Now.Year))
+{
+    <p>Leap Year</p>
+}
+else
+{
+    <p>False</p>
+}
+
+@foreach (var item in Enumerable.Range(1,10).ToList())
+{
+    <p>@item</p>
+}

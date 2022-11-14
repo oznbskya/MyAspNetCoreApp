@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "ExampleController Index Sayfası";
+    Layout = "ExampleLayout";
+}
+<link rel="stylesheet" href="~/css/example.css" asp-append-version="true" />
+
+@section Css
+{
+    <style>
+        div {
+            color: red;
+            background-color: yellow;
+        }
+    </style>
+}
+
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+        alert("Sayfama Hoşgeldin!");
+    </script>
+}
+
+@section header
+{
+    <p><b>ExampleController Index Sayfası</b></p>
+}
+
+<h2>Bu sayfa Index sayfasıdır</h2>
+<div>Merhabaa</div>
+
+
+<partial name="_Menu" />
+
