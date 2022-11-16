@@ -10,13 +10,6 @@ namespace MyAspNetCoreApp.Web.Controllers
         public ProductController()
         {
             _productRepository = new ProductRepository();
-
-            if(!_productRepository.GetAll().Any())
-            {
-                _productRepository.Add(new() { Id = 1, Name = "Kalem 1", Price = 100, Stock = 100 });
-                _productRepository.Add(new() { Id = 2, Name = "Kalem 2", Price = 150, Stock = 200 });
-                _productRepository.Add(new() { Id = 3, Name = "Kalem 3", Price = 200, Stock = 300 });
-            }
         }
 
         public IActionResult Index()
@@ -24,6 +17,22 @@ namespace MyAspNetCoreApp.Web.Controllers
             var products = _productRepository.GetAll();
 
             return View(products);
+        }
+
+        public IActionResult Remove(int id)
+        {
+            _productRepository.Remove(id);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        public IActionResult Edit(int id)
+        {
+            return View();
         }
     }
 }

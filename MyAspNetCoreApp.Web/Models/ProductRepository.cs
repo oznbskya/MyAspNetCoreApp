@@ -4,7 +4,12 @@ namespace MyAspNetCoreApp.Web.Models
 {
     public class ProductRepository
     {
-        private static List<Product> _products;
+        private static List<Product> _products = new List<Product>()
+        {
+            new() { Id = 1, Name = "Pencil 1", Price = 100, Stock = 100 },
+            new () { Id = 2, Name = "Pencil 2", Price = 150, Stock = 200 },
+            new () { Id = 3, Name = "Pencil 3", Price = 200, Stock = 300 }
+        };
 
         // Read
         public List<Product> GetAll() => _products;
