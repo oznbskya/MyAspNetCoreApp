@@ -5,23 +5,28 @@ namespace MyAspNetCoreApp.Web.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly ProductRepository _productRepository;
+        private readonly AppDbContext _context;
 
-        public ProductController()
+        public ProductController(AppDbContext context)
         {
-            _productRepository = new ProductRepository();
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            var products = _productRepository.GetAll();
+            var products = _context.Products.ToList();
 
             return View(products);
         }
 
         public IActionResult Remove(int id)
         {
-            _productRepository.Remove(id);
+            var product = _context.Products.Find(id);
+
+            _context.Products.Remove(product);
+
+            _context.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
@@ -30,9 +35,32 @@ namespace MyAspNetCoreApp.Web.Controllers
             return View();
         }
 
-        public IActionResult Edit(int id)
+        [HttpPost]
+        public IActionResult Add(Product newProduct)
         {
-            return View();
+            _context.Products.Add(newProduct);
+            _context.SaveChanges();
+
+            TempData["status"] = "Product Added Succesfully";
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Update(int id)
+        {
+            var product = _context.Products.Find(id);
+
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult Update(Product updateProduct)
+        {
+            _context.Products.Update(updateProduct);
+            _context.SaveChanges();
+
+            TempData["status"] = "Product Updated Succesfully";
+            return RedirectToAction("Index");
         }
     }
 }

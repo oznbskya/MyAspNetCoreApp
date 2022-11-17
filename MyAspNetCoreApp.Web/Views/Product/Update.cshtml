@@ -1,14 +1,16 @@
 ﻿
 @{
-    ViewData["Title"] = "Add";
+    ViewData["Title"] = "Update";
 }
 
 @model Product
 
-<h1>Add Product</h1>
+<h1>Update Product</h1>
 <hr />
 
-<form method="post" asp-controller="Product" asp-action="Add">
+<form method="post" asp-controller="Product" asp-action="Update">
+    <input type="hidden" asp-for="Id" />
+
     <label>Product Name:</label>
     <input type="text" asp-for="Name" />
     <br />
@@ -21,6 +23,6 @@
     <label>Product Color:</label>
     <input type="text" asp-for="Color" />
 
-    <button type="submit">Save</button>
+    <button type="submit">Update</button>
 </form>
 
